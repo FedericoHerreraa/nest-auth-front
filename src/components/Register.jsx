@@ -21,7 +21,7 @@ const Register = () => {
         }
         
         await register(finalUser)
-        navigate('/')
+        navigate('/profile')
     }
 
     return (
