@@ -1,5 +1,5 @@
 import axios from 'axios'
 
-export const loginRequest = async (finalUser) => axios.post('http://localhost:3000/auth/login', finalUser)
+export const loginRequest = async (finalUser) => axios.post('https://nest-auth-alg9.onrender.com/auth/login', finalUser)
 
-export const registerRequest = async (userFinal) => axios.post('http://localhost:3000/auth/register', userFinal)
+export const registerRequest = async (userFinal) => axios.post('https://nest-auth-alg9.onrender.com/auth/register', userFinal)
