@@ -1,9 +1,12 @@
 import { useState } from "react"
 import { loginRequest } from "../api/auth"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
     const [user,setUser] = useState()
     const [password,setPassword] = useState('')
+
+    const navigate = useNavigate()
     
 
     const handleSubmit = async (e) => {
@@ -14,8 +17,8 @@ const Login = () => {
         }
         console.log(finalUser)
 
-        const res = await loginRequest(finalUser)
-        console.log(res)
+        await loginRequest(finalUser)
+        navigate('/profile')
     }
 
     return (
