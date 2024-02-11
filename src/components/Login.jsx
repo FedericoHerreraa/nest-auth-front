@@ -3,7 +3,7 @@ import { loginRequest } from "../api/auth"
 import { useNavigate } from "react-router-dom"
 
 const Login = () => {
-    const [user,setUser] = useState()
+    const [email,setEmail] = useState()
     const [password,setPassword] = useState('')
 
     const navigate = useNavigate()
@@ -12,7 +12,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const finalUser = {
-            user,
+            email,
             password
         }
         console.log(finalUser)
@@ -24,7 +24,7 @@ const Login = () => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" onChange={(e) => setUser(e.target.value)} value={user} placeholder="email"/>
+                <input type="text" onChange={(e) => setEmail(e.target.value)} value={email} placeholder="email"/>
                 <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} placeholder="contra"/>
                 <input type="submit" value='Iniciar sesion'/>
             </form>
