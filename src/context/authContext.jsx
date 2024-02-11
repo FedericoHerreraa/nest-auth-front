@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }) => {
         setLoading(true)
         try {
             const res = await loginRequest(finalUser)
-            console.log(res)
             setUser(res.data)
         } catch (error) {
             setError(error.response.data)
