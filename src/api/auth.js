@@ -3,9 +3,10 @@ import Cookies from 'js-cookie'
 
 export const loginRequest = async (finalUser) => {
     try {
+        delete axios.defaults.headers.common['Content-Type'];
         const res = await axios.post('https://nest-auth-alg9.onrender.com/auth/login', finalUser, 
             { withCredentials: true, headers: { 'Content-Type': 'application/json' }})
-            
+
         if (res.data.user && res.data.token) {
             const token = res.data.token
             axios.defaults.headers.common['Authorization'] = token;
