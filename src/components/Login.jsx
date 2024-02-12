@@ -15,7 +15,6 @@ const Login = () => {
             email,
             password
         }
-        console.log(finalUser)
 
         await loginRequest(finalUser)
         navigate('/profile')
