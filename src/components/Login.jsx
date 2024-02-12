@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { loginRequest } from "../api/auth"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/authContext"
 
