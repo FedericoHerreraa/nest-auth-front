@@ -6,8 +6,8 @@ export const loginRequest = async (finalUser) => {
         const res = await axios.post('https://nest-auth-alg9.onrender.com/auth/login', finalUser, { withCredentials: true })
         if (res.data.user && res.data.token) {
             const token = res.data.token
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            Cookies.set('token', token, { expires: 7 });
+            axios.defaults.headers.common['Authorization'] = token;
+            Cookies.set('token', `Bearer ${token}`, { expires: 7 });
         }
         return res
     } catch (err) {
