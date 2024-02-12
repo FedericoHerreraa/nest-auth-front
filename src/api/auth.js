@@ -8,10 +8,9 @@ export const loginRequest = async (finalUser) => {
             const token = res.data.token
             Cookies.set('token', `Bearer ${token}`, { expires: 7 });
         }
-    
         return res
     } catch (err) {
-        console.log(err)
+        return err
     }
 }
 
