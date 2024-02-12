@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
         setLoading(true)
         try {
             const res = await loginRequest(finalUser)
-            setUser(res)
+            setUser(res.data)
         } catch (error) {
             setError(error.response.data)
         } finally {
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
         setLoading(true)
         try {
             const res = await registerRequest(finalUser)
-            setUser(res)
+            setUser(res.data)
         } catch (error) {
             setError(error.response.data)
         } finally {
