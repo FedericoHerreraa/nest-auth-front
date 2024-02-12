@@ -7,7 +7,7 @@ export const loginRequest = async (finalUser) => {
         if (res.data.user && res.data.token) {
             const token = res.data.token
             axios.defaults.headers.common['Authorization'] = token;
-            Cookies.set('token', `Bearer ${token}`, { expires: 7 });
+            Cookies.set('token', `Bearer ${token}`, { expires: 7, sameSite: 'None', secure: true });
         }
         return res
     } catch (err) {
