@@ -6,7 +6,7 @@ const Login = () => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
 
-    const { signIn } = useAuth()
+    const { signIn, error } = useAuth()
 
     const navigate = useNavigate()
     
@@ -29,6 +29,11 @@ const Login = () => {
                 <input required type="password" name="password" onChange={(e) => setPassword(e.target.value)} value={password} placeholder="contra"/>
                 <input type="submit" value='Iniciar sesion'/>
             </form>
+            {
+                error ? (
+                    <p>{error}</p>
+                ) : ''
+            }
         </div>
     )
 }
