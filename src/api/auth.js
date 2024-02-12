@@ -3,10 +3,9 @@ import Cookies from 'js-cookie'
 
 export const loginRequest = async (finalUser) => {
     const res = await axios.post('https://nest-auth-alg9.onrender.com/auth/login', finalUser, { withCredentials: true })
-    console.log(res.data)
     if (res.data && res.data.token) {
         const token = res.data.token
-        Cookies.set('tu_cookie_nombre', token, { expires: 7 });
+        Cookies.set('token', token, { expires: 7 });
 
         return token
     } else {
