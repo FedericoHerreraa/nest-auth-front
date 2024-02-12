@@ -1,10 +1,13 @@
 import { useState } from "react"
 import { loginRequest } from "../api/auth"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/authContext"
 
 const Login = () => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+
+    const { signIn } = useAuth()
 
     const navigate = useNavigate()
     
@@ -16,7 +19,7 @@ const Login = () => {
             password
         }
 
-        await loginRequest(finalUser)
+        await signIn(finalUser)
         navigate('/profile')
     }
 

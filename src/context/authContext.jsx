@@ -9,11 +9,12 @@ export const AuthProvider = ({ children }) => {
     const [error, setError] = useState(null)
 
 
-    const signIn = (finalUser) => {
+    const signIn = async (finalUser) => {
         setLoading(true)
         try {
-            const user = loginRequest(finalUser)
-            setUser(user)
+            const res = await loginRequest(finalUser)
+            console.log(res.data.user)
+            setUser(res.data.user)
         } catch (error) {
             setError(error.response.data)
         } finally {

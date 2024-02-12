@@ -8,7 +8,7 @@ export const loginRequest = async (finalUser) => {
         Cookies.set('token', token, { expires: 7 });
     }
 
-    return res.data.user
+    return res
 }
 
 export const registerRequest = async (userFinal) => axios.post('https://nest-auth-alg9.onrender.com/auth/register', userFinal, { withCredentials: true })
