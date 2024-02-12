@@ -4,7 +4,7 @@ import { loginRequest, registerRequest } from "../api/auth";
 export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState('')
+    const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
         setLoading(true)
         try {
             const res = await loginRequest(finalUser)
+            console.log(res.data)
             setUser(res.data)
         } catch (error) {
             setError(error.response.data)
@@ -33,7 +34,6 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    console.log(user)
 
     return (
         <AuthContext.Provider value={{ user, loading, error, register, signIn }}>
