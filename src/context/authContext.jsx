@@ -9,10 +9,10 @@ export const AuthProvider = ({ children }) => {
     const [error, setError] = useState(null)
 
 
-    const signIn = async (finalUser) => {
+    const signIn = (finalUser) => {
         setLoading(true)
         try {
-            const res = await loginRequest(finalUser)
+            const res = loginRequest(finalUser)
             console.log(res.data)
             setUser(res.data.user)
         } catch (error) {
