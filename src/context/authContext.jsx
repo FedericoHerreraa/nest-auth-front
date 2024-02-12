@@ -6,7 +6,7 @@ export const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null)
+    const [error, setError] = useState('')
 
 
     const signIn = async (finalUser) => {
@@ -14,9 +14,11 @@ export const AuthProvider = ({ children }) => {
         const res = await loginRequest(finalUser)
         if (res.data) {
             setUser(res.data.user)
+            return true
         }
         console.log(res.message)
         setError(res.message)
+        return false
     }
 
     const register = async (finalUser) => {

@@ -18,8 +18,10 @@ const Login = () => {
             password
         }
 
-        await signIn(finalUser)
-        navigate('/profile')
+        const res = await signIn(finalUser)
+        if (res) {
+            navigate('/profile')
+        }
     }
 
     return (
