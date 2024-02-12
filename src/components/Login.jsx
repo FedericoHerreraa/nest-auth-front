@@ -33,7 +33,7 @@ const Login = () => {
             </form>
             {
                 error ? (
-                    <p>{error}</p>
+                    <p style={{ color: 'red' }}>{error}</p>
                 ) : ''
             }
         </div>
