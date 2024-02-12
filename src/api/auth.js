@@ -10,8 +10,7 @@ export const loginRequest = async (finalUser) => {
         }
         return res
     } catch (err) {
-        console.log(err.response.data)
-        return err
+        return err.response.data
     }
 }
 
