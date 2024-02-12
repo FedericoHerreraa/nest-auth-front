@@ -7,7 +7,7 @@ export const loginRequest = async (finalUser) => {
         const token = res.data.token
         Cookies.set('token', token, { expires: 7 });
 
-        return token
+        return res
     } else {
         console.log('No se encontro el token en la respuesta')
         return null
