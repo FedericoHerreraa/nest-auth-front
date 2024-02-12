@@ -33,6 +33,8 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    console.log(user)
+
     return (
         <AuthContext.Provider value={{ user, loading, error, register, signIn }}>
             {children}
