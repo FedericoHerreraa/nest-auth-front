@@ -12,9 +12,8 @@ export const AuthProvider = ({ children }) => {
     const signIn = (finalUser) => {
         setLoading(true)
         try {
-            const res = loginRequest(finalUser)
-            console.log(res.data)
-            setUser(res.data.user)
+            const user = loginRequest(finalUser)
+            setUser(user)
         } catch (error) {
             setError(error.response.data)
         } finally {
