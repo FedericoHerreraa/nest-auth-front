@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react"
 import { useAuth } from "../context/authContext"
-import { profileRequest } from "../api/auth"
 
 const Profile = () => {
-  const { user } = useAuth()
+  const { user, profile } = useAuth()
   // console.log(user)
+
+  useEffect(async () => {
+    const res = await profile()
+    console.log(res)
+  }, [])
 
   if (!user) {
     return <p>No se pudo obtener el perfil del usuario.</p>;
