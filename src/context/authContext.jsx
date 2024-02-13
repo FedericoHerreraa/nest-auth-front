@@ -31,15 +31,10 @@ export const AuthProvider = ({ children }) => {
 
     const profile = async () => {
         setLoading(true)
-        try {
-            const res = await profileRequest()
-            console.log(res)
-            setUser(res)
-            setLoading(false)
-            return true
-        } catch (error) {
-            console.log(error)
-        }
+        const res = await profileRequest()
+        setUser(res)
+        setLoading(false)
+        return true
     }
 
 

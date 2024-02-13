@@ -21,6 +21,12 @@ export const registerRequest = async (userFinal) => axios.post('https://nest-aut
 
 export const profileRequest = async () => {
     console.log(axios.defaults.headers.Authorization)
-    const res = await axios.get('https://nest-auth-alg9.onrender.com/auth/profile', { withCredentials: true })
-    return res
+    try {
+        const res = await axios.get('https://nest-auth-alg9.onrender.com/auth/profile', { withCredentials: true })
+        console.log(res)
+        return res
+    } catch (err) {
+        console.log(err)
+        return err
+    }
 }
