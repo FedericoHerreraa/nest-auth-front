@@ -33,21 +33,22 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    // const profile = async () => {
-    //     setLoading(true)
-    //     try {
-    //         const res = await profileRequest()
-    //         console.log(res)
-    //     } catch (error) {
-    //         console.log(error)
-    //     } finally {
-    //         setLoading(false)
-    //     }
-    // }
+    const profile = async () => {
+        setLoading(true)
+        try {
+            const res = await profileRequest()
+            console.log(res.data)
+            setUser(res.data)
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setLoading(false)
+        }
+    }
 
 
     return (
-        <AuthContext.Provider value={{ user, loading, error, register, signIn }}>
+        <AuthContext.Provider value={{ user, loading, error, register, signIn, profile }}>
             {children}
         </AuthContext.Provider>
     )
