@@ -30,3 +30,11 @@ export const profileRequest = async () => {
         return err
     }
 }
+
+export const verifyToken = () => {
+    const token = axios.defaults.headers.Authorization
+    if (!token) {
+        return false
+    }
+    return true
+}

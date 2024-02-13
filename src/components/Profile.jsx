@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react"
 import { useAuth } from "../context/authContext"
+import { verifyToken } from "../api/auth"
+import { useNavigate } from "react-router-dom"
 
 const Profile = async () => {
-  const { user, profile, loading } = useAuth()
+  const { user, loading } = useAuth()
+
+  const navigate = useNavigate()
 
   useEffect(() => {
-    profile()
+    const res = verifyToken()
+    if (!res) {
+      navigate('/login')
+    }
   }, [])
-
 
   if (loading) {
     return <p>Loading...</p>
