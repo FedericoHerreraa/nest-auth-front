@@ -3,17 +3,20 @@ import { useAuth } from "../context/authContext"
 import { verifyToken } from "../api/auth"
 import { useNavigate } from "react-router-dom"
 
-const Profile = async () => {
+const Profile = () => {
   const { user, loading } = useAuth()
-
   const navigate = useNavigate()
   
-  const res = verifyToken()
-  if (!res) {
-    navigate('/login')
-  }
-  // useEffect(() => {
-  // }, [])
+  useEffect(() => {
+    const checkToken = () => {
+      const res = verifyToken();
+        if (!res) {
+          navigate('/login');
+        }
+      };
+    
+    checkToken();
+  }, [navigate]);
 
   if (loading) {
     return <p>Loading...</p>
