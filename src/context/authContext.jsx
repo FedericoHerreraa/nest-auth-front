@@ -32,6 +32,7 @@ export const AuthProvider = ({ children }) => {
     const profile = async () => {
         setLoading(true)
         const res = await profileRequest()
+        console.log(res)
         setUser(res)
         setLoading(false)
         return true

@@ -7,13 +7,13 @@ const Profile = async () => {
   const { user, loading } = useAuth()
 
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const res = verifyToken()
-    if (!res) {
-      navigate('/login')
-    }
-  }, [])
+  
+  const res = verifyToken()
+  if (!res) {
+    navigate('/login')
+  }
+  // useEffect(() => {
+  // }, [])
 
   if (loading) {
     return <p>Loading...</p>
