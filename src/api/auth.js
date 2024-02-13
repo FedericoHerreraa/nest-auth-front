@@ -24,7 +24,7 @@ export const profileRequest = async () => {
     try {
         const res = await axios.get('https://nest-auth-alg9.onrender.com/auth/profile', { withCredentials: true })
         console.log(res)
-        return res
+        return res.data
     } catch (err) {
         console.log(err)
         return err
