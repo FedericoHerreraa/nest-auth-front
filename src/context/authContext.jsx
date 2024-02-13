@@ -5,12 +5,10 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
 
     const signIn = async (finalUser) => {
-        setLoading(true)
         const res = await loginRequest(finalUser)
         if (res.data) {
             setUser(res.data.user)
@@ -22,32 +20,26 @@ export const AuthProvider = ({ children }) => {
     }
 
     const register = async (finalUser) => {
-        setLoading(true)
         try {
             const res = await registerRequest(finalUser)
             setUser(res.data)
         } catch (error) {
             setError(error)
-        } finally {
-            setLoading(false)
         }
     }
 
     const profile = async () => {
-        setLoading(true)
         try {
             const res = await profileRequest()
             setUser(res)
         } catch (error) {
             console.log(error)
-        } finally {
-            setLoading(false)
         }
     }
 
 
     return (
-        <AuthContext.Provider value={{ user, loading, error, register, signIn, profile }}>
+        <AuthContext.Provider value={{ user, error, register, signIn, profile }}>
             {children}
         </AuthContext.Provider>
     )
