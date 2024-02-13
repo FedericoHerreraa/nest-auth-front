@@ -6,7 +6,7 @@ const Login = () => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
 
-    const { signIn, error } = useAuth()
+    const { signIn, error, profile } = useAuth()
 
     const navigate = useNavigate()
     
@@ -20,6 +20,7 @@ const Login = () => {
 
         const res = await signIn(finalUser)
         if (res) {
+            await profile()
             navigate('/profile')
         }
     }
