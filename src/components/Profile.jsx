@@ -2,11 +2,15 @@ import { useEffect, useState } from "react"
 import { useAuth } from "../context/authContext"
 
 const Profile = () => {
-  const { user, profile } = useAuth()
+  const { user, profile, loading } = useAuth()
 
   useEffect(() => {
     profile()
   }, [])
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
 
   return (
       <div>
