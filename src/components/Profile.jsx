@@ -3,7 +3,7 @@ import { useAuth } from "../context/authContext"
 
 const Profile = () => {
   const { user, profile } = useAuth()
-  // console.log(user)
+  console.log(user)
 
   useEffect(async () => {
     const res = await profile()
