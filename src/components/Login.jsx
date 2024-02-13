@@ -20,8 +20,11 @@ const Login = () => {
 
         const res = await signIn(finalUser)
         if (res) {
-            await profile()
-            navigate('/profile')
+            const response = await profile()
+            console.log(response)
+            if (response) {
+                navigate('/profile')
+            }
         }
     }
 
