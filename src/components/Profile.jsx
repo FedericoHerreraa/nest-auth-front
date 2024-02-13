@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { useAuth } from "../context/authContext"
 
-const Profile = () => {
+const Profile = async () => {
   const { user, profile, loading } = useAuth()
 
-  const response = profile()
+  const response = await profile()
   console.log(response)
 
   if (response) {
