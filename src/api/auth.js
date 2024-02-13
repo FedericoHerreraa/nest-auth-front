@@ -3,9 +3,8 @@ import Cookies from 'js-cookie'
 
 export const loginRequest = async (finalUser) => {
     try {
-        delete axios.defaults.headers.common['Content-Type'];
         const res = await axios.post('https://nest-auth-alg9.onrender.com/auth/login', finalUser, 
-            { withCredentials: true, headers: { 'Content-Type': 'application/json' }})
+            { withCredentials: true, credentials: 'include', headers: { 'Content-Type': 'application/json' }})
 
         if (res.data.user && res.data.token) {
             const token = res.data.token
@@ -21,6 +20,6 @@ export const loginRequest = async (finalUser) => {
 export const registerRequest = async (userFinal) => axios.post('https://nest-auth-alg9.onrender.com/auth/register', userFinal, { withCredentials: true })
 
 export const profileRequest = async () => {
-    // console.log(axios.defaults.headers.common)
+    console.log(axios.defaults.headers.common)
     return axios.get('https://nest-auth-alg9.onrender.com/auth/profile', { withCredentials: true })
 }
