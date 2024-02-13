@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
         setLoading(true)
         try {
             const res = await profileRequest()
-            console.log(res.data)
+            console.log(res)
             setUser(res.data)
         } catch (error) {
             console.log(error)

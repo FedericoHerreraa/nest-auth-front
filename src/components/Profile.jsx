@@ -10,10 +10,6 @@ const Profile = () => {
     console.log(res)
   }, [])
 
-  if (!user) {
-    return <p>No se pudo obtener el perfil del usuario.</p>;
-  }
-
   return (
       <div>
           <h1>Profile</h1>
