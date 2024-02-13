@@ -3,17 +3,16 @@ import { useAuth } from "../context/authContext"
 
 const Profile = () => {
   const { user, profile } = useAuth()
-  console.log(user)
 
-  useEffect(async () => {
-    const res = await profile()
-    console.log(res)
+  useEffect(() => {
+    profile()
   }, [])
 
   return (
       <div>
           <h1>Profile</h1>
-          <h2>username</h2>
+          <h2>{user.email}</h2>
+          <p>{user.username}</p>
       </div>
   )
 }
