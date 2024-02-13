@@ -4,7 +4,8 @@ import { loginRequest, registerRequest, profileRequest } from "../api/auth";
 export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null)
+    const userLoaded = JSON.parse(localStorage.getItem('user'))
+    const [user, setUser] = useState(userLoaded)
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
@@ -13,6 +14,7 @@ export const AuthProvider = ({ children }) => {
         const res = await loginRequest(finalUser)
         if (res.data) {
             setUser(res.data.user)
+            localStorage.setItem('user', JSON.stringify(res.data.user))
             return true
         }
         console.log(res.message)
@@ -24,6 +26,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await registerRequest(finalUser)
             setUser(res.data)
+            localStorage.setItem('user', JSON.stringify(res.data))
         } catch (error) {
             setError(error)
         }
@@ -33,10 +36,13 @@ export const AuthProvider = ({ children }) => {
         setLoading(true)
         const res = await profileRequest()
         console.log(res)
+        localStorage.setItem('user', JSON.stringify(res))
         setUser(res)
         setLoading(false)
         return true
     }
+
+    console.log(user)
 
 
     return (

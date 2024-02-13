@@ -1,9 +1,12 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
+const prodURL = 'https://nest-auth-alg9.onrender.com'
+const localURL = 'http://localhost:3000'
+
 export const loginRequest = async (finalUser) => {
     try {
-        const res = await axios.post('https://nest-auth-alg9.onrender.com/auth/login', finalUser, 
+        const res = await axios.post(`${prodURL}/auth/login`, finalUser, 
             { withCredentials: true, credentials: 'include', headers: { 'Content-Type': 'application/json' }})
 
         if (res.data.user && res.data.token) {
@@ -17,7 +20,7 @@ export const loginRequest = async (finalUser) => {
     }
 }
 
-export const registerRequest = async (userFinal) => axios.post('https://nest-auth-alg9.onrender.com/auth/register', userFinal, { withCredentials: true })
+export const registerRequest = async (userFinal) => axios.post(`${prodURL}/auth/register`, userFinal, { withCredentials: true })
 
 export const profileRequest = async () => {
     const token = axios.defaults.headers.Authorization
@@ -29,7 +32,7 @@ export const profileRequest = async () => {
                 Authorization: token
             }
         }
-        const res = await axios.get('https://nest-auth-alg9.onrender.com/auth/profile', config)
+        const res = await axios.get(`${prodURL}/auth/profile`, config)
         console.log(res)
         return res.data
     } catch (err) {
@@ -39,7 +42,7 @@ export const profileRequest = async () => {
 }
 
 export const verifyToken = () => {
-    const token = axios.defaults.headers.Authorization
+    const token = Cookies.get('token')
     console.log(token)
     if (!token) {
         return false

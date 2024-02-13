@@ -9,16 +9,16 @@ import Home from "./components/Home"
 
 function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
+    <AuthProvider>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
         </Routes>
-      </AuthProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </AuthProvider>
 
   )
 }

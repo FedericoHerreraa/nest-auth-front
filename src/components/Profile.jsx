@@ -3,20 +3,17 @@ import { useAuth } from "../context/authContext"
 import { verifyToken } from "../api/auth"
 import { useNavigate } from "react-router-dom"
 
+
 const Profile = () => {
-  const { user, loading } = useAuth()
+  const { user, loading, profile } = useAuth()
   const navigate = useNavigate()
   
   useEffect(() => {
-    const checkToken = () => {
-      const res = verifyToken();
-        if (!res) {
-          navigate('/login');
-        }
-      };
-    
-    checkToken();
-  }, [navigate]);
+    const res = verifyToken();
+    if (!res) {
+      navigate('/login');
+    }
+  }, [])
 
   if (loading) {
     return <p>Loading...</p>
