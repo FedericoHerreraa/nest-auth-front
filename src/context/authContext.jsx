@@ -6,6 +6,7 @@ export const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
 
 
     const signIn = async (finalUser) => {
@@ -29,9 +30,11 @@ export const AuthProvider = ({ children }) => {
     }
 
     const profile = async () => {
+        setLoading(true)
         try {
             const res = await profileRequest()
             setUser(res)
+            setLoading(false)
         } catch (error) {
             console.log(error)
         }
