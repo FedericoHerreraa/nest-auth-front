@@ -40,6 +40,7 @@ export const profileRequest = async () => {
 
 export const verifyToken = () => {
     const token = axios.defaults.headers.Authorization
+    console.log(token)
     if (!token) {
         return false
     }
