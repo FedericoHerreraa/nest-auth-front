@@ -32,14 +32,14 @@ export const AuthProvider = ({ children }) => {
     const profile = async () => {
         setLoading(true)
         const res = await profileRequest()
-        setUser(res)
+        setUser(res.data)
         setLoading(false)
         return true
     }
 
 
     return (
-        <AuthContext.Provider value={{ user, error, register, signIn, profile }}>
+        <AuthContext.Provider value={{ user, error, loading, register, signIn, profile }}>
             {children}
         </AuthContext.Provider>
     )
