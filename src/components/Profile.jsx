@@ -7,25 +7,17 @@ const Profile = async () => {
   const response = await profile()
   console.log(response)
 
-  if (response) {
-    return (
-      <div>
-          <h1>Profile</h1>
-          <h2>{user.email}</h2>
-          <p>{user.username}</p>
-      </div>
-    )
-  } else {
+  if (!response) {
     return <p>Loading...</p>
   }
 
-  // if (loading) {
-    
-  // }
-
-  // return (
-      
-  // )
+  return (
+    <div>
+      <h1>Profile</h1>
+      <h2>{user.email}</h2>
+      <p>{user.username}</p>
+    </div>
+  )
 }
 
 export default Profile
