@@ -4,14 +4,10 @@ import { useAuth } from "../context/authContext"
 const Profile = async () => {
   const { user, profile, loading } = useAuth()
 
-  let res
   useEffect(() => {
-    profile().then((response) => {
-      res = response
-    })
+    profile()
   }, [])
 
-  console.log(res)
 
   if (loading) {
     return <p>Loading...</p>
