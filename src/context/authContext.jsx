@@ -4,17 +4,17 @@ import { loginRequest, registerRequest, profileRequest } from "../api/auth";
 export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
-    const userLoaded = JSON.parse(localStorage.getItem('user'))
-    const [user, setUser] = useState(userLoaded)
+    const [user, setUser] = useState()
     const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
 
     const signIn = async (finalUser) => {
         const res = await loginRequest(finalUser)
         if (res.data) {
             setUser(res.data.user)
-            localStorage.setItem('user', JSON.stringify(res.data.user))
+            setLoading(false)
+
             return true
         }
         console.log(res.message)
@@ -26,24 +26,24 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await registerRequest(finalUser)
             setUser(res.data)
-            localStorage.setItem('user', JSON.stringify(res.data))
+            setLoading(false)
         } catch (error) {
             setError(error)
         }
     }
 
     const profile = async () => {
-        setLoading(true)
         const res = await profileRequest()
-        console.log(res)
-        localStorage.setItem('user', JSON.stringify(res))
-        setUser(res)
+        if (res === 'Unauthorized') {
+            setLoading(false)
+            return false
+        }
+        setUser(res.data)
         setLoading(false)
+
         return true
+        
     }
-
-    console.log(user)
-
 
     return (
         <AuthContext.Provider value={{ user, error, loading, register, signIn, profile }}>

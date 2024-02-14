@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/authContext"
+import { Link } from "react-router-dom"
 
 const Login = () => {
     const [email,setEmail] = useState('')
@@ -21,7 +22,6 @@ const Login = () => {
         const res = await signIn(finalUser)
         if (res) {
             const response = await profile()
-            console.log(response)
             if (response) {
                 navigate('/profile')
             }
@@ -30,6 +30,7 @@ const Login = () => {
 
     return (
         <div>
+            <h1>Ingresa</h1>
             <form onSubmit={handleSubmit}>
                 <input required type="email" name="email" onChange={(e) => setEmail(e.target.value)} value={email} placeholder="email"/>
                 <input required type="password" name="password" onChange={(e) => setPassword(e.target.value)} value={password} placeholder="contra"/>
@@ -40,6 +41,7 @@ const Login = () => {
                     <p style={{ color: 'red' }}>{error}</p>
                 ) : ''
             }
+            <Link to='/register'>No tenes una cuenta? Registrate</Link>
         </div>
     )
 }

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Cookies from 'js-cookie'
 
 const prodURL = 'https://nest-auth-alg9.onrender.com'
 const localURL = 'http://localhost:3000'
@@ -11,8 +10,7 @@ export const loginRequest = async (finalUser) => {
 
         if (res.data.user && res.data.token) {
             const token = res.data.token
-            axios.defaults.headers['Authorization'] = token;
-            Cookies.set('token', token, { expires: 7, secure: true });
+            localStorage.setItem('token', JSON.stringify(token))
         }
         return res
     } catch (err) {
@@ -20,30 +18,23 @@ export const loginRequest = async (finalUser) => {
     }
 }
 
-export const registerRequest = async (userFinal) => axios.post(`${prodURL}/auth/register`, userFinal, { withCredentials: true })
+export const registerRequest = async (userFinal) => 
+    axios.post(`${prodURL}/auth/register`, userFinal, { withCredentials: true })
 
 export const profileRequest = async () => {
-    const token = axios.defaults.headers.Authorization
+    const token = JSON.parse(localStorage.getItem('token'))
     console.log(token)
     try {
-        const config = {
-            withCredentials: true,
-            headers: {
-                Authorization: token
-            }
-        }
-        const res = await axios.get(`${prodURL}/auth/profile`, config)
-        console.log(res)
-        return res.data
+        const res = await axios.get(`${prodURL}/auth/profile`, { headers: { Authorization: `Bearer ${token}` }})
+        return res
     } catch (err) {
         console.log(err)
-        return err
+        return err.response.data.error
     }
 }
 
 export const verifyToken = () => {
-    const token = Cookies.get('token')
-    console.log(token)
+    const token = JSON.parse(localStorage.getItem('token'))
     if (!token) {
         return false
     }
