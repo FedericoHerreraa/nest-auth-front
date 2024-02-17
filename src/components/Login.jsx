@@ -30,18 +30,38 @@ const Login = () => {
 
     return (
         <div>
-            <h1>Ingresa</h1>
-            <form onSubmit={handleSubmit}>
-                <input required type="email" name="email" onChange={(e) => setEmail(e.target.value)} value={email} placeholder="email"/>
-                <input required type="password" name="password" onChange={(e) => setPassword(e.target.value)} value={password} placeholder="contra"/>
-                <input type="submit" value='Iniciar sesion'/>
+            <h1 className="text-2xl text-center m-5">Ingresar</h1>
+            <form onSubmit={handleSubmit} className="flex flex-col items-center mt-10">
+                <input 
+                    required 
+                    type="email" 
+                    name="email" 
+                    onChange={(e) => setEmail(e.target.value)} 
+                    value={email}
+                    placeholder="email"
+                    className="bg-zinc-300 p-2 rounded-md"
+                />
+                <input 
+                    required 
+                    type="password" 
+                    name="password" 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    value={password} 
+                    placeholder="password"
+                    className="bg-zinc-300 p-2 mt-3 rounded-md"
+                />
+                <input 
+                    type="submit" 
+                    value='Iniciar sesion'
+                    className="mt-7 bg-blue-400 rounded-md py-1 px-3 cursor-pointer"
+                />
+                <Link to='/register' className="mt-10 hover:underline">No tenes una cuenta? Registrate</Link>
             </form>
             {
                 error ? (
                     <p style={{ color: 'red' }}>{error}</p>
                 ) : ''
             }
-            <Link to='/register'>No tenes una cuenta? Registrate</Link>
         </div>
     )
 }

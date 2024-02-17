@@ -18,12 +18,22 @@ export const loginRequest = async (finalUser) => {
     }
 }
 
-export const registerRequest = async (userFinal) => 
-    axios.post(`${prodURL}/auth/register`, userFinal, { withCredentials: true })
+export const registerRequest = async (userFinal) => {
+    try {
+        const res = await axios.post(`${prodURL}/auth/register`, userFinal, { withCredentials: true })
+        if (res.status === 201) {
+            return true
+        }
+    } catch (err) {
+        console.log(err.response.data)
+        return err.response.data
+    }
+
+}
 
 export const profileRequest = async () => {
     const token = JSON.parse(localStorage.getItem('token'))
-    console.log(token)
+
     try {
         const res = await axios.get(`${prodURL}/auth/profile`, { headers: { Authorization: `Bearer ${token}` }})
         return res
