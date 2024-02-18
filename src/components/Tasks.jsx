@@ -6,15 +6,10 @@ import { useNavigate } from "react-router-dom"
 
 const Tasks = () => {
     const { tasks, getTasks, deleteTask } = useTask()
-    const { isAuthenticated } = useAuth()
+    
+    getTasks()
 
     const navigate = useNavigate()
-
-    useEffect(() => {
-        if (isAuthenticated()) {
-            getTasks()
-        }
-    }, [])
 
     return (
         <div>
